@@ -7,7 +7,7 @@ public record CadastroDeUsuarioDto(
 		@NotBlank
 		String nome,
 		@NotBlank
-		String sobre_nome,
+		String sobreNome,
 		@NotBlank
 		@Email
 		String email,
