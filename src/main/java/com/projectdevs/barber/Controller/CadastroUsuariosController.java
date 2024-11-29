@@ -23,7 +23,7 @@ public class CadastroUsuariosController {
 
 	@PostMapping("/cadastro")
 	@Transactional
-	public ResponseEntity cadastraUsuario(@RequestBody @Valid CadastroDeUsuarioDto cadastroDeUsuarioDto, UriComponentsBuilder uriComponentsBuilder){
+	public ResponseEntity cadastraUsuario(@RequestBody @Valid CadastroDeUsuarioDto cadastroDeUsuarioDto, UriComponentsBuilder uriComponentsBuilder) {
 		var cadastra = repository.save(new CadastroUsuario(cadastroDeUsuarioDto));
 		var uri = uriComponentsBuilder.path("servicos/cadastro/{id}").buildAndExpand(cadastra.getId()).toUri();
 		return ResponseEntity.created(uri).body(new DetalhamentoCadastro(cadastra));
@@ -31,10 +31,10 @@ public class CadastroUsuariosController {
 
 	@PutMapping("/atualiza")
 	@Transactional
-	public ResponseEntity atualizaCadastro(@RequestBody @Valid AtualizaCadastro atualizaCadastro){
+	public ResponseEntity atualizaCadastro(@RequestBody @Valid AtualizaCadastro atualizaCadastro) {
 		var usuario = repository.getReferenceById(atualizaCadastro.id());
 		usuario.atualizaCadastro(atualizaCadastro);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.noContent().build();
 	}
 
 }

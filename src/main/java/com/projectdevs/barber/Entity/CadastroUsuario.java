@@ -2,6 +2,7 @@ package com.projectdevs.barber.Entity;
 
 import com.projectdevs.barber.DTO.AtualizaCadastro;
 import com.projectdevs.barber.DTO.CadastroDeUsuarioDto;
+import com.projectdevs.barber.DTO.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,22 +30,15 @@ public class CadastroUsuario {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "logradouro")
-	private String logradouro;
-
-	@Column(name = "bairro")
-	private String bairro;
-
-	@Column(name = "numero")
-	private String numero;
+	@Embedded
+	private Endereco endereco;
 
 	public CadastroUsuario(CadastroDeUsuarioDto cadastroDeUsuarioDto){
 		this.nome = cadastroDeUsuarioDto.nome();
 		this.sobreNome = cadastroDeUsuarioDto.sobreNome();
 		this.email = cadastroDeUsuarioDto.email();
-		this.logradouro = cadastroDeUsuarioDto.logradouro();
-		this.bairro = cadastroDeUsuarioDto.bairro();
-		this.numero = cadastroDeUsuarioDto.numero();
+		this.endereco = cadastroDeUsuarioDto.endereco();
+
 	}
 
 	public void atualizaCadastro(AtualizaCadastro atualizaCadastro){
@@ -52,14 +46,8 @@ public class CadastroUsuario {
 			this.email = atualizaCadastro.email();
 		}
 
-		if (atualizaCadastro.logradouro() != null){
-			this.logradouro = atualizaCadastro.logradouro();
-		}
-		if (atualizaCadastro.bairro() != null){
-			this.bairro = atualizaCadastro.bairro();
-		}
-		if (atualizaCadastro.numero() != null){
-			this.numero = atualizaCadastro.numero();
+		if (atualizaCadastro.endereco() != null){
+			this.endereco.atualizaEndereco(atualizaCadastro.endereco());
 		}
 	}
 }

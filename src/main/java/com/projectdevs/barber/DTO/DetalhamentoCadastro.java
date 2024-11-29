@@ -7,9 +7,7 @@ public record DetalhamentoCadastro(
 		String nome,
 		String sobreNome,
 		String email,
-		String logradouro,
-		String bairro,
-		String numero
+		Endereco endereco
 ) {
 	public DetalhamentoCadastro(CadastroUsuario cadastroUsuario){
 		this(
@@ -17,9 +15,7 @@ public record DetalhamentoCadastro(
 				cadastroUsuario.getNome(),
 				cadastroUsuario.getSobreNome(),
 				cadastroUsuario.getEmail(),
-				cadastroUsuario.getLogradouro(),
-				cadastroUsuario.getBairro(),
-				cadastroUsuario.getNumero()
+				cadastroUsuario.getEndereco()
 		);
 	}
 }
